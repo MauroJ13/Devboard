@@ -1,0 +1,27 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.task-card {
+  @include interactive-card;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  // Während des Ziehens bleibt ein "Geist" der Karte an der alten Position
+  &.is-dragging {
+    opacity: 0.4;
+    border-style: dashed;
+  }
+
+  .task-card__deadline.is-overdue {
+    color: $color-danger;
+    font-weight: 500;
+  }
+}
+
+// Bewusst nicht verschachtelt: der Mixin erzeugt ".task-card:hover .task-card__actions"
+.task-card__actions {
+  @include reveal-on-hover(".task-card");
+}

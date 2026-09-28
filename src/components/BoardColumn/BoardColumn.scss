@@ -1,0 +1,32 @@
+@use "../../styles/variables" as *;
+
+.board-column {
+  transition:
+    border-color $transition-fast,
+    background-color $transition-fast;
+
+  .board-column__list {
+    min-height: 6rem;
+  }
+
+  // Linie, die beim Drag & Drop die Einfüge-Position anzeigt
+  .board-column__indicator {
+    height: 3px;
+    border-radius: 2px;
+    background: $color-cyan;
+  }
+
+  .board-column__empty {
+    border: 1px dashed transparent;
+  }
+
+  // Spalte hervorheben, wenn ein Task darüber gezogen wird
+  &.is-drop-target {
+    border-color: $color-cyan;
+    background-color: $color-cyan-soft;
+
+    .board-column__empty {
+      border-color: $color-cyan;
+    }
+  }
+}

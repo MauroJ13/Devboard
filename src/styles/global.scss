@@ -1,0 +1,26 @@
+@use "variables" as *;
+
+::selection {
+  background: $color-cyan;
+  color: $color-black;
+}
+
+// Dezente Scrollbars (z. B. in Spalten und Dialogen)
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $color-border transparent;
+}
+
+// Native Datumsauswahl an das Farbkonzept anpassen
+input[type="date"] {
+  accent-color: $color-cyan;
+
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

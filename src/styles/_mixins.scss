@@ -1,0 +1,34 @@
+@use "variables" as *;
+
+// Gemeinsamer Hover-Effekt für klickbare Karten (Boards & Tasks).
+@mixin interactive-card {
+  border-color: $color-border;
+  box-shadow: $shadow-soft;
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover {
+    border-color: $color-border-strong;
+    box-shadow: $shadow-hover;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-cyan;
+    outline-offset: 2px;
+  }
+}
+
+// Aktionen (z. B. Löschen) erst bei Hover einblenden – aber nur auf Geräten
+// mit echter Hover-Fähigkeit. Auf Touch-Geräten bleiben sie sichtbar.
+@mixin reveal-on-hover($parent) {
+  @media (hover: hover) {
+    opacity: 0;
+    transition: opacity $transition-fast;
+
+    #{$parent}:hover &,
+    #{$parent}:focus-within & {
+      opacity: 1;
+    }
+  }
+}

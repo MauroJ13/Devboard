@@ -1,0 +1,54 @@
+@use "../../styles/variables" as *;
+
+.navbar {
+  // Feine cyan-farbene Linie unter der Navbar (wie im Screenshot)
+  border-bottom: 1px solid rgba($color-cyan, 0.45);
+
+  .navbar__brand {
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .navbar__link {
+    position: relative;
+    color: rgba($color-white, 0.7);
+    transition: color $transition-fast;
+
+    // Unterstrich-Indikator für die aktive Route
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0.5rem;
+      right: 0.5rem;
+      bottom: -2px;
+      height: 2px;
+      border-radius: 1px;
+      background: $color-cyan;
+      transform: scaleX(0);
+      transition: transform $transition-fast;
+    }
+
+    &:hover {
+      color: $color-cyan;
+    }
+
+    &.is-active {
+      color: $color-cyan;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  .navbar__user {
+    transition: background-color $transition-fast;
+
+    &:hover {
+      background-color: rgba($color-cyan, 0.12);
+    }
+  }
+}

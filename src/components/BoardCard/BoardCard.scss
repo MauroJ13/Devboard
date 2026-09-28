@@ -1,0 +1,14 @@
+@use "../../styles/mixins" as *;
+
+.board-card {
+  @include interactive-card;
+
+  .board-card__link {
+    outline: none;
+  }
+}
+
+// Bewusst nicht verschachtelt: der Mixin erzeugt ".board-card:hover .board-card__delete"
+.board-card__delete {
+  @include reveal-on-hover(".board-card");
+}
