@@ -1,10 +1,8 @@
-/**
- * Erzeugt eine UUID (v4) – kompatibel mit dem Postgres-Typ `uuid` in Supabase.
- * crypto.randomUUID ist nur in sicheren Kontexten (https / localhost) verfügbar,
- * daher gibt es einen Fallback, z. B. für den Aufruf über eine LAN-IP.
- */
 export function createId(): string {
-  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+  if (
+    typeof crypto !== "undefined" &&
+    typeof crypto.randomUUID === "function"
+  ) {
     return crypto.randomUUID();
   }
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (char) => {

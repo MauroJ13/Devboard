@@ -1,6 +1,5 @@
 import type { AppState } from "@/types";
 
-/** v2: Start ohne Demo-Daten (alte v1-Demo-Daten werden ignoriert) */
 export const STORAGE_KEY = "devboard:state:v2";
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -10,11 +9,15 @@ function isObject(value: unknown): value is Record<string, unknown> {
 /** Grobe Strukturprüfung, damit kaputte localStorage-Daten die App nicht crashen */
 function isAppState(value: unknown): value is AppState {
   if (!isObject(value)) return false;
-  if (value.currentUserId !== null && typeof value.currentUserId !== "string") return false;
+  if (value.currentUserId !== null && typeof value.currentUserId !== "string")
+    return false;
   if (!Array.isArray(value.users) || !Array.isArray(value.boards)) return false;
 
   const usersValid = value.users.every(
-    (user) => isObject(user) && typeof user.id === "string" && typeof user.name === "string",
+    (user) =>
+      isObject(user) &&
+      typeof user.id === "string" &&
+      typeof user.name === "string",
   );
   const boardsValid = value.boards.every(
     (board) =>
