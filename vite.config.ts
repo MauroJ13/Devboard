@@ -6,6 +6,12 @@ export default defineConfig({
 
   base: "/Devboard/",
 
+  resolve: {
+    alias: {
+      "@": "/src",
+    },
+  },
+
   css: {
     preprocessorOptions: {
       scss: { api: "modern" },
