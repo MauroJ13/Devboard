@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import { HashRouter, Navigate, Route, Routes } from "react-router";
 
 import { Layout } from "@/components/Layout/Layout";
 import { DevboardProvider } from "@/context/DevboardProvider";
@@ -10,7 +10,7 @@ import { NotFoundPage } from "@/pages/NotFound/NotFoundPage";
 export default function App() {
   return (
     <DevboardProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route element={<Layout />}>
             <Route index element={<Navigate to="/boards" replace />} />
@@ -20,7 +20,7 @@ export default function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </DevboardProvider>
   );
 }
